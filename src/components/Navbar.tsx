@@ -111,6 +111,20 @@ const Navbar = () => {
               Contact
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
+            <a
+              href="tel:6354595035"
+              aria-label="Call 6354595035"
+              className="text-textPrimary hover:text-accent transition duration-300"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 5.25a2.25 2.25 0 012.25-2.25h2.106a2.25 2.25 0 012.186 1.715l.622 2.488a2.25 2.25 0 01-.985 2.435l-1.37.822a15.05 15.05 0 006.766 6.766l.822-1.37a2.25 2.25 0 012.435-.985l2.488.622a2.25 2.25 0 011.715 2.186v2.106A2.25 2.25 0 0118.75 21h-1.5C9.38 21 3 14.62 3 6.75v-1.5z"
+                />
+              </svg>
+            </a>
           </div>
           
           {/* Mobile Menu Button */}
@@ -160,6 +174,9 @@ const Navbar = () => {
               </a>
               <a href="#contact" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Contact
+              </a>
+              <a href="tel:6354595035" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
+                Call: 6354595035
               </a>
             </div>
           </motion.div>
