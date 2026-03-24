@@ -176,7 +176,7 @@ const Navbar = () => {
                 Contact
               </a>
               <a href="tel:6354595035" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
-                Call: 6354595035
+                Call Us
               </a>
             </div>
           </motion.div>
