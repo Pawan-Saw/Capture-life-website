@@ -1,9 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function onPointerDown(e: MouseEvent | TouchEvent) {
+      if (!isOpen) return;
+      const target = e.target as Node | null;
+      if (target && dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setIsOpen(false);
+      }
+    }
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setIsOpen(false);
+    }
+
+    document.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('touchstart', onPointerDown, { passive: true });
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown);
+      document.removeEventListener('touchstart', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen]);
+
+  const closeAllMenus = () => {
+    setIsOpen(false);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <motion.nav
@@ -12,7 +42,7 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className="fixed top-0 w-full bg-warmBg/70 backdrop-blur-sm z-50 border-b border-secondaryAccent/30"
     >
-      <div className="w-full px-4 sm:px-6 lg:px-12">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
         <div className="flex justify-between items-center h-16">
           <div className="text-xl sm:text-2xl font-playfair text-accent font-semibold tracking-widest">
             Capture life
@@ -20,16 +50,32 @@ const Navbar = () => {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 lg:space-x-10">
-            <a href="#home" className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base">
+            <a
+              href="#home"
+              onClick={closeAllMenus}
+              className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
+            >
               Home
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
-            <a href="#about" className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base">
+            <a
+              href="#about"
+              onClick={closeAllMenus}
+              className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
+            >
               About
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
-            <div className="relative">
-              <button onClick={() => setIsOpen(!isOpen)} className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base">
+            <div
+              className="relative"
+              ref={dropdownRef}
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
+            >
+              <button
+                onClick={() => setIsOpen((v) => !v)}
+                className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
+              >
                 Portfolio
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
               </button>
@@ -38,20 +84,30 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full left-0 mt-2 w-48 bg-cardBg shadow-lg rounded-md py-2 z-10 border border-gold/20"
+                  className="absolute top-full left-0 w-48 pt-2 z-10"
                 >
-                  <a href="#weddings" className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Weddings</a>
-                  <a href="#maternity" className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Maternity</a>
-                  <a href="#family" className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Family</a>
-                  <a href="#portraits" className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Portraits</a>
+                  <div className="bg-cardBg shadow-lg rounded-md py-2 border border-gold/20">
+                    <a href="#weddings" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Weddings</a>
+                    <a href="#maternity" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Maternity</a>
+                    <a href="#family" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Family</a>
+                    <a href="#portraits" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Portraits</a>
+                  </div>
                 </motion.div>
               )}
             </div>
-            <a href="#pricing" className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base">
+            <a
+              href="#pricing"
+              onClick={closeAllMenus}
+              className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
+            >
               Pricing
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
-            <a href="#contact" className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base">
+            <a
+              href="#contact"
+              onClick={closeAllMenus}
+              className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
+            >
               Contact
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
@@ -59,7 +115,10 @@ const Navbar = () => {
           
           {/* Mobile Menu Button */}
           <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => {
+              setIsOpen(false);
+              setMobileMenuOpen((v) => !v);
+            }}
             className="md:hidden text-textPrimary hover:text-accent transition duration-300"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,29 +136,29 @@ const Navbar = () => {
             className="md:hidden bg-warmBg/95 backdrop-blur-sm border-t border-secondaryAccent/30"
           >
             <div className="px-4 py-4 space-y-4">
-              <a href="#home" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#home" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Home
               </a>
-              <a href="#about" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#about" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 About
               </a>
               <div>
-                <button onClick={() => setIsOpen(!isOpen)} className="text-textPrimary hover:text-accent transition duration-300 font-poppins">
+                <button onClick={() => setIsOpen((v) => !v)} className="text-textPrimary hover:text-accent transition duration-300 font-poppins">
                   Portfolio
                 </button>
                 {isOpen && (
                   <div className="mt-2 ml-4 space-y-2">
-                    <a href="#weddings" className="block text-textSecondary hover:text-accent font-poppins" onClick={() => setMobileMenuOpen(false)}>Weddings</a>
-                    <a href="#maternity" className="block text-textSecondary hover:text-accent font-poppins" onClick={() => setMobileMenuOpen(false)}>Maternity</a>
-                    <a href="#family" className="block text-textSecondary hover:text-accent font-poppins" onClick={() => setMobileMenuOpen(false)}>Family</a>
-                    <a href="#portraits" className="block text-textSecondary hover:text-accent font-poppins" onClick={() => setMobileMenuOpen(false)}>Portraits</a>
+                    <a href="#weddings" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Weddings</a>
+                    <a href="#maternity" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Maternity</a>
+                    <a href="#family" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Family</a>
+                    <a href="#portraits" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Portraits</a>
                   </div>
                 )}
               </div>
-              <a href="#pricing" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#pricing" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Pricing
               </a>
-              <a href="#contact" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#contact" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Contact
               </a>
             </div>

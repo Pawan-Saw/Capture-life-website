@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const AboutUs = () => {
   return (
     <section id="about" className="w-full py-12 md:py-20 bg-warmSection">
-      <div className="w-full px-4 sm:px-6 lg:px-12">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

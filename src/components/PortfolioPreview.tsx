@@ -15,7 +15,7 @@ const PortfolioPreview = () => {
 
   return (
     <section id="portfolio" className="w-full py-12 md:py-16" style={{ backgroundColor: '#EFE7DC' }}>
-      <div className="w-full px-4 sm:px-6 lg:px-12">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

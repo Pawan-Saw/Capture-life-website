@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const Pricing = () => {
+  const navigate = useNavigate();
+
   const packages = [
     {
       title: 'Basic Package',
@@ -33,133 +36,105 @@ const Pricing = () => {
     },
   ];
 
+  const goToPayment = (pkg: { title: string; price: string }) => {
+    const params = new URLSearchParams({
+      package: pkg.title,
+      price: pkg.price,
+    });
+    navigate(`/payment-demo?${params.toString()}`);
+  };
+
   return (
-    <section id="pricing" className="w-full py-12 md:py-16" style={{ backgroundColor: '#F5F1EB' }}>
-      <div className="w-full px-4 sm:px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* LEFT SIDE: creative collage */}
-          <motion.div
-            initial={{ opacity: 0, x: -15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="relative"
-          >
-            <div className="rounded-3xl bg-[#EFE7DC] shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80"
-                alt="Couple wedding large"
-                className="w-full h-64 md:h-72 object-cover transition-transform duration-500 hover:scale-105"
-              />
-              <div className="p-4 md:p-5 pt-14">
-                <div className="rounded-2xl overflow-hidden shadow-[0_10px_20px_rgba(0,0,0,0.08)] mb-3">
+    <section id="pricing" className="w-full py-10 md:py-14 bg-[#F5F1EB]">
+      <div className="w-full px-0 md:px-2">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="overflow-hidden bg-[#ece6df] shadow-[0_10px_35px_rgba(0,0,0,0.08)]"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1800&q=80"
+            alt="Prewedding hero"
+            className="h-44 md:h-56 w-full object-cover"
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] gap-6 md:gap-8 px-4 pb-4 md:px-7 md:pb-7 lg:px-8 lg:pb-8">
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative z-10 -mt-20 md:-mt-24 lg:-mt-28 space-y-3"
+            >
+              <div className="mx-auto w-[92%] h-56 md:h-64 overflow-hidden rounded-t-[999px] rounded-b-none border-[10px] md:border-[12px] border-[#ece6df] bg-[#ece6df]">
+                <img
+                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80"
+                  alt="Couple close-up"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="mx-auto w-[92%]">
+                <div className="h-52 md:h-64 overflow-hidden border-[10px] md:border-[12px] border-[#ece6df] bg-[#ece6df]">
                   <img
-                    src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80"
-                    alt="Medium couple"
-                    className="w-full h-36 object-cover transition-transform duration-500 hover:scale-105"
+                    src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
+                    alt="Couple walking"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 1"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                  <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 2"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                   <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 2"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                   <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 2"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                   <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 2"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                   <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 2"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                   <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 2"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                   <div className="rounded-xl overflow-hidden shadow-[0_8px_18px_rgba(0,0,0,0.08)]">
-                    <img
-                      src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80"
-                      alt="Small couple 2"
-                      className="w-full h-24 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
+              </div>
+              <div className="mx-auto w-[90%] grid grid-cols-2 gap-3">
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=900&q=80"
+                    alt="Bride in field"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80"
+                    alt="Couple silhouette"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* RIGHT SIDE: pricing text and cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="space-y-6"
-          >
-            <div className="space-y-2">
-              <h2 className="text-4xl md:text-5xl font-playfair text-[#2C2C2C]">Prewedding</h2>
-              <p className="text-3xl md:text-4xl font-playfair text-[#2C2C2C]">𝔭𝔥𝔬𝔱𝔬𝔤𝔯𝔞𝔭𝔥𝔶 𝔭𝔯𝔦𝔠𝔢 𝔩𝔦𝔰𝔱</p>
-              <p className="text-lg md:text-xl font-cursive text-[#8A6F54]"></p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: 16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="pt-1 md:pt-3 lg:pt-6"
+            >
+              <h2 className="text-5xl md:text-6xl font-playfair text-[#8A6F54] leading-none">Prewedding</h2>
+              <p className="mt-1 text-3xl md:text-4xl italic font-playfair text-[#2C2C2C]">Photography Price List</p>
 
-            <div className="grid grid-cols-1 gap-5">
-              {packages.map((pkg, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="rounded-2xl bg-[#EFE7DC] border border-[#D8C8B5] p-5 md:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
-                >
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-xl md:text-2xl font-playfair text-[#2C2C2C]">{pkg.title}</h3>
-                    <span className="text-xl md:text-2xl font-playfair text-[#C8A97E]">{pkg.price}</span>
+              <div className="mt-7 space-y-7">
+                {packages.map((pkg) => (
+                  <div key={pkg.title}>
+                    <div className="flex items-end justify-between gap-3">
+                      <h3 className="text-3xl font-playfair text-[#2C2C2C]">{pkg.title}</h3>
+                      <span className="text-3xl italic font-playfair text-[#9f815f]">{pkg.price}</span>
+                    </div>
+                    <ul className="mt-3 list-disc pl-6 space-y-1 text-lg text-[#2C2C2C] font-poppins">
+                      {pkg.features.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                    <div className="mt-3 flex justify-end">
+                      <button
+                        onClick={() => goToPayment(pkg)}
+                        className="rounded-full border border-[#b79a79] px-5 py-1.5 text-sm font-semibold text-[#7e6448] hover:bg-[#b79a79] hover:text-white transition"
+                      >
+                        Book Now
+                      </button>
+                    </div>
                   </div>
-                  <ul className="text-[#2C2C2C] font-poppins text-sm md:text-base space-y-2 mb-5 pl-5 list-disc">
-                    {pkg.features.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                  <button className="relative inline-flex items-center justify-center overflow-hidden rounded-full bg-[#2C2C2C] px-8 py-2.5 text-white font-semibold group">
-                    <span className="absolute inset-0 bg-[#C8A97E] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    <span className="relative">Book Now</span>
-                  </button>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

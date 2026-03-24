@@ -9,7 +9,7 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="w-full py-12 md:py-16 bg-warmSection">
-      <div className="w-full px-4 sm:px-6 lg:px-12">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ const Testimonials = () => {
           Client Testimonials
         </motion.h2>
       </div>
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 px-2 md:px-3">
+      <div className="mx-auto w-full max-w-screen-2xl grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 px-4 sm:px-6 lg:px-12">
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={index}

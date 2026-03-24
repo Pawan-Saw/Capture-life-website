@@ -28,16 +28,29 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for reaching out! We\'ll get back to you soon.');
-    setFormData({ firstName: '', lastName: '', email: '', sessionType: [], date: '', time: '', story: '' });
+
+    const whatsappNumber = '917033121233';
+    const selectedSessions = formData.sessionType.length > 0 ? formData.sessionType.join(', ') : 'Not selected';
+    const message = [
+      'Hello, I would like to book a photography session.',
+      '',
+      `Name: ${formData.firstName} ${formData.lastName}`,
+      `Email: ${formData.email}`,
+      `Session Type: ${selectedSessions}`,
+      `Preferred Date: ${formData.date}`,
+      `Preferred Time: ${formData.time}`,
+      `Story / Vision: ${formData.story || 'Not provided'}`,
+    ].join('\n');
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappUrl;
   };
 
   return (
     <section id="contact" className="w-full py-12 md:py-20 bg-warmBg relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-warmBg via-warmSection to-warmBg opacity-30"></div>
       
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
         {/* Main Container */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Left Side - Info */}

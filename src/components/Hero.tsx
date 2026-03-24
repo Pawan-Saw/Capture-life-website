@@ -12,7 +12,7 @@ const Hero = () => {
     <section id="home" className="w-full min-h-screen pt-16 bg-warmBg relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-warmBg via-warmSection to-warmBg opacity-80"></div>
       <div className="relative z-10 w-full py-12">
-        <div className="w-full px-4 sm:px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -27,6 +27,9 @@ const Hero = () => {
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
+              onClick={() => {
+                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
               className="bg-accent text-white px-6 sm:px-8 py-3 rounded-[30px] font-poppins font-semibold text-base sm:text-lg shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition duration-300"
             >
               Book Your Shoot
@@ -38,7 +41,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="w-full grid grid-cols-2 md:grid-cols-4 grid-rows-4 md:grid-rows-3 gap-2 md:gap-4 h-[60vh] md:h-[70vh] px-2 md:px-3"
+          className="mx-auto w-full max-w-screen-2xl grid grid-cols-2 md:grid-cols-4 grid-rows-4 md:grid-rows-3 gap-2 md:gap-4 h-[60vh] md:h-[70vh] px-4 sm:px-6 lg:px-12"
           >
           {cards.map((card, index) => (
             <motion.div
