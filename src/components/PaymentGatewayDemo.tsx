@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
+import Footer from './Footer';
+import Navbar from './Navbar';
 
 const paymentMethods = [
   { id: 'upi', label: 'UPI', hint: 'GPay / PhonePe / Paytm' },
@@ -48,8 +50,10 @@ const PaymentGatewayDemo = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#F5F1EB] via-[#EFE7DC] to-[#F5F1EB] px-4 py-6 md:py-10">
-      <div className="mx-auto w-full max-w-6xl">
+    <>
+      <Navbar />
+      <div className="min-h-screen w-full bg-gradient-to-br from-[#F5F1EB] via-[#EFE7DC] to-[#F5F1EB] px-4 pt-24 pb-10 md:pt-24 md:pb-12">
+        <div className="mx-auto w-full max-w-6xl">
         <div className="mb-6 flex items-center justify-between gap-4">
           <button
             type="button"
@@ -202,8 +206,10 @@ const PaymentGatewayDemo = () => {
             )}
           </motion.div>
         </div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -33,6 +35,7 @@ const Navbar = () => {
   const closeAllMenus = () => {
     setIsOpen(false);
     setMobileMenuOpen(false);
+    setMobileServicesOpen(false);
   };
 
   return (
@@ -73,10 +76,11 @@ const Navbar = () => {
               onMouseLeave={() => setIsOpen(false)}
             >
               <button
-                onClick={() => setIsOpen((v) => !v)}
+                type="button"
+                onClick={() => setIsOpen(true)}
                 className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
               >
-                Portfolio
+                Our Services
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
               </button>
               {isOpen && (
@@ -84,13 +88,58 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full left-0 w-48 pt-2 z-10"
+                  className="absolute top-full left-0 z-10 w-56 pt-2 rounded-lg border border-gold/20 bg-cardBg shadow-lg overflow-hidden"
                 >
-                  <div className="bg-cardBg shadow-lg rounded-md py-2 border border-gold/20">
-                    <a href="#weddings" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Weddings</a>
-                    <a href="#maternity" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Maternity</a>
-                    <a href="#family" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Family</a>
-                    <a href="#portraits" onClick={closeAllMenus} className="block px-4 py-2 text-white hover:bg-gold/20 font-poppins">Portraits</a>
+                  <div className="py-2 flex flex-col">
+                    <Link
+                      to="/services/candid-photography"
+                      onClick={closeAllMenus}
+                      className="px-4 py-2 text-textPrimary hover:bg-accent/15 hover:text-accent transition-colors font-poppins text-sm leading-tight"
+                    >
+                      Candid Photography
+                    </Link>
+                    <Link
+                      to="/services/pre-wedding-photography"
+                      onClick={closeAllMenus}
+                      className="px-4 py-2 text-textPrimary hover:bg-accent/15 hover:text-accent transition-colors font-poppins text-sm leading-tight"
+                    >
+                      Pre-Wedding Photography
+                    </Link>
+                    <Link
+                      to="/services/portrait-photography"
+                      onClick={closeAllMenus}
+                      className="px-4 py-2 text-textPrimary hover:bg-accent/15 hover:text-accent transition-colors font-poppins text-sm leading-tight"
+                    >
+                      Portrait Photography
+                    </Link>
+                    <Link
+                      to="/services/ring-ceremony-photography"
+                      onClick={closeAllMenus}
+                      className="px-4 py-2 text-textPrimary hover:bg-accent/15 hover:text-accent transition-colors font-poppins text-sm leading-tight"
+                    >
+                      Ring Ceremony Photography
+                    </Link>
+                    <Link
+                      to="/services/portfolio-photography"
+                      onClick={closeAllMenus}
+                      className="px-4 py-2 text-textPrimary hover:bg-accent/15 hover:text-accent transition-colors font-poppins text-sm leading-tight"
+                    >
+                      Portfolio Photography
+                    </Link>
+                    <Link
+                      to="/services/baby-shoot"
+                      onClick={closeAllMenus}
+                      className="px-4 py-2 text-textPrimary hover:bg-accent/15 hover:text-accent transition-colors font-poppins text-sm leading-tight"
+                    >
+                      Baby Shoot
+                    </Link>
+                    <Link
+                      to="/services/maternity-photography"
+                      onClick={closeAllMenus}
+                      className="px-4 py-2 text-textPrimary hover:bg-accent/15 hover:text-accent transition-colors font-poppins text-sm leading-tight"
+                    >
+                      Maternity Photography
+                    </Link>
                   </div>
                 </motion.div>
               )}
@@ -101,7 +150,15 @@ const Navbar = () => {
               className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
             >
               Pricing
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold/60 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a
+              href="/gallery"
+              onClick={closeAllMenus}
+              className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
+            >
+              Gallery
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold/60 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#contact"
@@ -156,21 +213,45 @@ const Navbar = () => {
               <a href="#about" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 About
               </a>
-              <div>
-                <button onClick={() => setIsOpen((v) => !v)} className="text-textPrimary hover:text-accent transition duration-300 font-poppins">
-                  Portfolio
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen((v) => !v)}
+                  className="block text-textPrimary hover:text-accent transition duration-300 font-poppins"
+                >
+                  Our Services
                 </button>
-                {isOpen && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    <a href="#weddings" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Weddings</a>
-                    <a href="#maternity" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Maternity</a>
-                    <a href="#family" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Family</a>
-                    <a href="#portraits" className="block text-textSecondary hover:text-accent font-poppins" onClick={closeAllMenus}>Portraits</a>
+                {mobileServicesOpen && (
+                  <div className="ml-4 space-y-2">
+                    <Link to="/services/candid-photography" className="block rounded-md px-2 py-1 text-textSecondary hover:bg-accent/10 hover:text-accent font-poppins transition-colors" onClick={closeAllMenus}>
+                      Candid Photography
+                    </Link>
+                    <Link to="/services/pre-wedding-photography" className="block rounded-md px-2 py-1 text-textSecondary hover:bg-accent/10 hover:text-accent font-poppins transition-colors" onClick={closeAllMenus}>
+                      Pre-Wedding Photography
+                    </Link>
+                    <Link to="/services/portrait-photography" className="block rounded-md px-2 py-1 text-textSecondary hover:bg-accent/10 hover:text-accent font-poppins transition-colors" onClick={closeAllMenus}>
+                      Portrait Photography
+                    </Link>
+                    <Link to="/services/ring-ceremony-photography" className="block rounded-md px-2 py-1 text-textSecondary hover:bg-accent/10 hover:text-accent font-poppins transition-colors" onClick={closeAllMenus}>
+                      Ring Ceremony Photography
+                    </Link>
+                    <Link to="/services/portfolio-photography" className="block rounded-md px-2 py-1 text-textSecondary hover:bg-accent/10 hover:text-accent font-poppins transition-colors" onClick={closeAllMenus}>
+                      Portfolio Photography
+                    </Link>
+                    <Link to="/services/baby-shoot" className="block rounded-md px-2 py-1 text-textSecondary hover:bg-accent/10 hover:text-accent font-poppins transition-colors" onClick={closeAllMenus}>
+                      Baby Shoot
+                    </Link>
+                    <Link to="/services/maternity-photography" className="block rounded-md px-2 py-1 text-textSecondary hover:bg-accent/10 hover:text-accent font-poppins transition-colors" onClick={closeAllMenus}>
+                      Maternity Photography
+                    </Link>
                   </div>
                 )}
               </div>
               <a href="#pricing" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Pricing
+              </a>
+              <a href="/gallery" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
+                Gallery
               </a>
               <a href="#contact" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Contact
