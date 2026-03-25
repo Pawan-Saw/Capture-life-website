@@ -54,7 +54,7 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 lg:space-x-10">
             <a
-              href="#home"
+              href="/#home"
               onClick={closeAllMenus}
               className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
             >
@@ -62,7 +62,7 @@ const Navbar = () => {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
-              href="#about"
+              href="/#about"
               onClick={closeAllMenus}
               className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
             >
@@ -145,7 +145,7 @@ const Navbar = () => {
               )}
             </div>
             <a
-              href="#pricing"
+              href="/#pricing"
               onClick={closeAllMenus}
               className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
             >
@@ -161,7 +161,7 @@ const Navbar = () => {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold/60 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               onClick={closeAllMenus}
               className="text-textPrimary hover:text-accent transition duration-300 relative group tracking-wider font-poppins text-sm lg:text-base"
             >
@@ -207,10 +207,10 @@ const Navbar = () => {
             className="md:hidden bg-warmBg/95 backdrop-blur-sm border-t border-secondaryAccent/30"
           >
             <div className="px-4 py-4 space-y-4">
-              <a href="#home" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
+              <a href="/#home" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Home
               </a>
-              <a href="#about" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
+              <a href="/#about" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 About
               </a>
               <div className="space-y-2">
@@ -247,13 +247,13 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              <a href="#pricing" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
+              <a href="/#pricing" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Pricing
               </a>
               <a href="/gallery" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Gallery
               </a>
-              <a href="#contact" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
+              <a href="/#contact" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
                 Contact
               </a>
               <a href="tel:6354595035" className="block text-textPrimary hover:text-accent transition duration-300 font-poppins" onClick={closeAllMenus}>
