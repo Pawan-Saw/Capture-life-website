@@ -1,24 +1,7 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Wedding = () => {
-  const weddingServices = [
-    {
-      title: 'Engagement Sessions',
-      description: 'Intimate pre-wedding shoots that capture your love story and chemistry.',
-      features: ['Cinematic lighting', 'Multiple locations', 'Edited gallery']
-    },
-    {
-      title: 'Wedding Day Coverage',
-      description: 'Full day documentation from getting ready to the last dance.',
-      features: ['8+ hours coverage', 'Second photographer', 'Real-time previews']
-    },
-    {
-      title: 'Bridal Portraits',
-      description: 'Stunning portraits that highlight your beauty and elegance.',
-      features: ['Professional styling', 'Multiple outfits', 'Fine art editing']
-    }
-  ];
-
   return (
     <section id="weddings" className="w-full py-12 md:py-20 bg-secondaryBg">
       <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
@@ -37,42 +20,59 @@ const Wedding = () => {
           </p>
         </motion.div>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {weddingServices.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-cardBg rounded-xl p-6 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-transparent hover:border-accent/40 transition duration-300"
-            >
-              <h3 className="text-xl md:text-2xl font-playfair text-textPrimary mb-3 md:mb-4">
-                {service.title}
-              </h3>
-              <p className="text-textSecondary font-poppins text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
-                {service.description}
-              </p>
-              <ul className="text-textSecondary font-poppins text-sm space-y-2">
-                {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-center">
-                    <span className="text-accent mr-2">•</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-
+        {/* Staggered / scattered photo gallery */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-12 md:mt-16"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-2 md:mt-6"
         >
-          <button className="bg-accent text-white px-8 md:px-10 py-3 md:py-4 rounded-[30px] font-poppins font-semibold text-base md:text-lg shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition duration-300">
-            Start Planning Your Wedding Photography
-          </button>
+          <div className="flex flex-row flex-nowrap justify-center items-start gap-[24px] px-[60px] py-[40px]">
+            {/* Photo 1 (leftmost) */}
+            <div className="w-[240px] h-[320px] mt-[60px]">
+              <img
+                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
+                alt="Wedding photo 1"
+                className="w-full h-full rounded-[16px] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.10)] transition-transform duration-300 ease-in-out hover:scale-[1.03]"
+              />
+            </div>
+
+            {/* Photo 2 */}
+            <div className="w-[220px] h-[270px] mt-[10px]">
+              <img
+                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+                alt="Wedding photo 2"
+                className="w-full h-full rounded-[16px] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.10)] transition-transform duration-300 ease-in-out hover:scale-[1.03]"
+              />
+            </div>
+
+            {/* Photo 3 */}
+            <div className="w-[220px] h-[270px] mt-[40px]">
+              <img
+                src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=900&q=80"
+                alt="Wedding photo 3"
+                className="w-full h-full rounded-[16px] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.10)] transition-transform duration-300 ease-in-out hover:scale-[1.03]"
+              />
+            </div>
+
+            {/* Photo 4 (rightmost) */}
+            <div className="w-[240px] h-[330px] mt-0">
+              <img
+                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80"
+                alt="Wedding photo 4"
+                className="w-full h-full rounded-[16px] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.10)] transition-transform duration-300 ease-in-out hover:scale-[1.03]"
+              />
+            </div>
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/gallery"
+              className="bg-[#C9A96E] text-white px-8 md:px-12 py-3 rounded-[30px] font-poppins font-semibold text-base md:text-lg shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition duration-300"
+            >
+              See More →
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>
