@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const PortfolioPreview = () => {
   const photos = [
@@ -10,8 +11,7 @@ const PortfolioPreview = () => {
     'https://images.unsplash.com/photo-1533106418986-963d5f8f2b7f?auto=format&fit=crop&w=1000&q=80',
   ];
 
-  // Duplicate photos for seamless loop
-  const carouselPhotos = [...photos, ...photos];
+  const heights = ['380px', '280px', '320px', '300px', '360px', '260px'];
 
   return (
     <section id="portfolio" className="w-full py-12 md:py-16" style={{ backgroundColor: '#EFE7DC' }}>
@@ -25,35 +25,47 @@ const PortfolioPreview = () => {
           Portfolio Preview
         </motion.h2>
 
-        <div className="relative overflow-hidden rounded-3xl border border-[#D8C8B5] shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-[#F5F1EB]">
-          <motion.div
-            className="flex h-72 md:h-80"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ repeat: Infinity, duration: 25, ease: 'linear' }}
-            style={{ width: `${carouselPhotos.length * 50}%` }}
-          >
-            {carouselPhotos.map((src, idx) => (
-              <motion.div
-                key={idx}
-                className="relative flex-shrink-0 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 h-full p-2"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.35 }}
-              >
-                <img
-                  src={src}
-                  alt={`Portfolio ${idx + 1}`}
-                  className="w-full h-full object-cover rounded-2xl shadow-[0_6px_20px_rgba(0,0,0,0.1)]"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-black/0 hover:bg-black/20 transition duration-300"></div>
-              </motion.div>
-            ))}
-          </motion.div>
+        <div className="relative overflow-hidden rounded-3xl border border-[#D8C8B5] shadow-[0_10px_30px_rgba(0,0,0,0.08)] bg-[#F5F1EB] px-6 py-8 columns-3 [column-gap:16px]">
+          {photos.slice(0, 6).map((src, idx) => (
+            <motion.div
+              key={src}
+              className="relative mb-4"
+              style={{ breakInside: 'avoid' }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+            >
+              <img
+                src={src}
+                alt={`Portfolio ${idx + 1}`}
+                className="w-full rounded-[12px] shadow-[0_4px_16px_rgba(0,0,0,0.10)]"
+                style={{ height: heights[idx], objectFit: 'cover' }}
+              />
+              <div className="absolute inset-0 rounded-[12px] bg-black/0 transition-colors duration-300 ease-in-out hover:bg-black/40" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100">
+                <span
+                  className="text-[#C9A96E] text-base tracking-[2px] uppercase font-poppins"
+                >
+                  View Gallery
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         <div className="mt-6 text-center">
           <p className="text-textSecondary font-poppins text-base sm:text-lg md:text-xl">
             Swipe through our favorite romantic frames in a continuous premium showcase.
           </p>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Link
+            to="/gallery"
+            className="bg-accent text-white px-8 md:px-10 py-3 md:py-4 rounded-[30px] font-poppins font-semibold text-base md:text-lg shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition duration-300"
+          >
+            View Full Gallery
+          </Link>
         </div>
       </div>
     </section>
