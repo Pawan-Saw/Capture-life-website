@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import brandLogo from 'C:/Users/pksaw/.cursor/projects/c-Users-pksaw-OneDrive-Desktop-Capture-life/assets/c__Users_pksaw_AppData_Roaming_Cursor_User_workspaceStorage_1c23765954dd2ae4fe0fc399aec19cc1_images_RS-be4557d0-01ee-48a2-aef8-40f6963e0f43.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,9 +60,13 @@ const Navbar = () => {
     >
       <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-12">
         <div className="flex justify-between items-center h-16">
-          <div className="text-xl sm:text-2xl font-playfair text-[#C9A96E] font-semibold tracking-widest">
-            Capture life
-          </div>
+          <a href="/#home" onClick={closeAllMenus} className="inline-flex items-center">
+            <img
+              src={brandLogo}
+              alt="Capture Life logo"
+              className="h-9 w-auto object-contain sm:h-10 mix-blend-screen"
+            />
+          </a>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 lg:space-x-10">
